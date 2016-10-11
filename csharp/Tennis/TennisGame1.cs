@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Tennis
 {
@@ -10,6 +11,8 @@ namespace Tennis
         private string player2Name;
         private bool player1Up = false;
         private bool player2Up = false;
+
+        private List<string> playerScore = new List<string>{"Love", "Fifteen", "Thirty", "Forty"};
 
         public TennisGame1(string player1Name, string player2Name)
         {
@@ -41,27 +44,6 @@ namespace Tennis
             }                
         }
         
-        private string playerScore(int score)
-        {
-            string strScore = "";
-            switch (score)
-            {
-                case 0:
-                    strScore = "Love";
-                    break;
-                case 1:
-                    strScore = "Fifteen";
-                    break;
-                case 2:
-                    strScore = "Thirty";
-                    break;
-                case 3:
-                    strScore = "Forty";
-                    break;
-            }            
-            return strScore;
-        }
-
         public string GetScore()
         {
             string score = "";
@@ -71,13 +53,13 @@ namespace Tennis
             if (highestScore < 4)
             {
                 if (player1Up || player2Up)
-                    score = playerScore(m_score1) + "-" + playerScore(m_score2);
+                    score = playerScore[m_score1] + "-" + playerScore[m_score2];
                 else
                 {
                     if (highestScore == 3)
                         score = "Deuce";
                     else
-                        score = playerScore(highestScore) + "-All";
+                        score = playerScore[highestScore] + "-All";
                 }
             }
             else
